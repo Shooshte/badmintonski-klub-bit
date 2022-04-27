@@ -1,6 +1,10 @@
 /// <reference types="cypress"/>
 
-describe("DOM", () => {
+import testLayout from "../layout";
+
+describe("landing", () => {
+  testLayout("/");
+
   it("<head>", () => {
     cy.visit("/");
 
@@ -67,17 +71,6 @@ describe("DOM", () => {
       "content",
       "summary_large_image"
     );
-  });
-
-  it("<html>", () => {
-    cy.visit("/");
-    // language
-    cy.get("html").should("have.attr", "lang", "sl");
-
-    // basic markup structure
-    cy.get("html body header");
-    cy.get("html body main");
-    cy.get("html body footer");
   });
 });
 

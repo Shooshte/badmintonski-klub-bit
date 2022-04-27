@@ -1,9 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import { getSponzorji, Sponzorji } from "../lib/api";
+
 import Footer from "../layout/footer";
 
-const Home: NextPage = () => {
+interface Props {
+  sponzorji: Sponzorji;
+}
+
+const Home: NextPage = ({ sponzorji }: Props) => {
   return (
     <>
       <Head>
@@ -32,12 +38,18 @@ const Home: NextPage = () => {
       </Head>
 
       <header></header>
-
       <main></main>
-
-      <Footer />
+      <Footer {...sponzorji} />
     </>
   );
 };
+
+export async function getStaticProps({ preview = false }) {
+  // Load sponsor images here
+  const sponzorji = (await getSponzorji(preview)) ?? [];
+  return {
+    props: { sponzorji },
+  };
+}
 
 export default Home;

@@ -1,0 +1,129 @@
+@import "styles/_colors";
+@import "styles/_fonts";
+@import "styles/_sizes";
+@import "styles/_screens";
+
+.container {
+  align-self: flex-end;
+  background-color: $primary-color;
+  display: grid;
+  grid-template-areas:
+    "sponsors sponsors"
+    "navigation social"
+    "address address";
+  width: 100%;
+}
+
+.address a,
+.navigation a,
+.social a {
+  color: $light-text-color;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.address,
+.navigation,
+.social {
+  display: flex;
+  flex-direction: column;
+  padding: map-get($spacing-sizes, "2");
+  a {
+    font-family: $text-font-family;
+    font-size: map-get($font-sizes, "4");
+    line-height: map-get($line-height-sizes, "3");
+    margin-bottom: map-get($spacing-sizes, "4");
+  }
+}
+
+.address {
+  grid-area: address;
+}
+
+.navigation {
+  grid-area: navigation;
+}
+
+.sponsors {
+  color: $dark-text-color;
+  grid-area: sponsors;
+  background-color: $light-background-color;
+  width: 100%;
+  h3 {
+    font-size: map-get($font-sizes, "2");
+    font-weight: 500;
+    margin-bottom: map-get($spacing-sizes, "2");
+    text-align: center;
+  }
+}
+
+.social {
+  align-items: flex-end;
+  grid-area: social;
+  justify-content: flex-start;
+}
+
+.logos {
+  align-items: center;
+  gap: map-get($spacing-sizes, "2");
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 100px);
+  justify-content: center;
+  padding: map-get($spacing-sizes, "2");
+  width: calc(
+    100% - map-get($spacing-sizes, "2") - map-get($spacing-sizes, "2")
+  );
+}
+
+@media screen and (min-width: $tablet) {
+  .address {
+    margin: 0 auto;
+  }
+  .cotainer {
+    justify-content: center;
+  }
+  .logos {
+    align-items: center;
+    gap: map-get($spacing-sizes, "2");
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    justify-content: center;
+    margin: 0 auto;
+    width: auto;
+  }
+  .navigation {
+    align-items: flex-end;
+  }
+  .social {
+    align-items: flex-start;
+    flex-direction: row;
+    a {
+      margin-right: map-get($spacing-sizes, "2");
+    }
+    a:last-child {
+      margin-right: 0;
+    }
+  }
+  .container {
+    grid-template-areas:
+      "sponsors sponsors sponsors"
+      "navigation address social";
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .logos {
+    gap: map-get($spacing-sizes, "1");
+  }
+  .navigation {
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: row;
+    a {
+      margin-right: map-get($spacing-sizes, "2");
+    }
+    a:last-child {
+      margin-right: 0;
+    }
+  }
+}
